@@ -1,3 +1,4 @@
 *.env*
 *ej3/media*
 .DS_Store
+*__pycache__*
