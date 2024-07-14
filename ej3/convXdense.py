@@ -33,4 +33,5 @@ def build_model(input_shape, output_labels):
     x = Dropout(0.3)(x)
     x = Dense(output_labels)(x)
     x = Activation("softmax")(x)
+    
     return tf.keras.Model(inputs=[i], outputs=[x])

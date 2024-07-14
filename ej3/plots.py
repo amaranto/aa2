@@ -1,10 +1,10 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
 def plot_fit(history, epochs):
     # Grafica la precisión y pérdida de entrenamiento y validación
+    
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
 
@@ -13,8 +13,9 @@ def plot_fit(history, epochs):
 
     epochs_range = range(epochs)
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(16, 8))
     plt.subplot(1, 2, 1)
+    
     plt.plot(epochs_range, acc, label='Training Accuracy')
     plt.plot(epochs_range, val_acc, label='Validation Accuracy')
     plt.legend(loc='lower right')
@@ -25,6 +26,7 @@ def plot_fit(history, epochs):
     plt.plot(epochs_range, val_loss, label='Validation Loss')
     plt.legend(loc='upper right')
     plt.title('Training and Validation Loss')
+    
     plt.show()
 
 def preprocess_image(image_path, target_size=(150, 150)):
@@ -32,7 +34,14 @@ def preprocess_image(image_path, target_size=(150, 150)):
     img = img.resize(target_size)
     return img
 
-def plot_predictions(model, img_pred_path, class_names, sx=6, sy=3, figsize=(50, 50)):
+def plot_predictions(
+     model, 
+     img_pred_path, 
+     class_names, 
+     sx=3, 
+     sy=3, 
+     figsize=(20, 20)
+    ):
     test_image_paths = list(img_pred_path.glob("*.jpg"))
 
     fig, axs = plt.subplots(sx, sy, figsize=figsize)
@@ -53,7 +62,7 @@ def plot_predictions(model, img_pred_path, class_names, sx=6, sy=3, figsize=(50,
             predicted_class_index = np.argmax(prediction)
             predicted_class = class_names[predicted_class_index]        
 
-            axs[x][y].set_title(f"Predicted: {predicted_class}")
+            axs[x][y].set_title(f"Predicted: {predicted_class}", fontsize=figsize[0])
             i+=1
 
     plt.tight_layout()
